@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Didática Infantil</title>
+	<meta charset="utf-8" />
+    <link href="Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="Content/css/site.css" rel="stylesheet" type="text/css" />
+    <script src="Content/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="Content/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="Content/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="Content/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="Content/js/site.js" type="text/javascript"></script>
+    <style>
+        .arroz{background-image:url('Content/images/arroz.jpg'); background-size:cover; background-position:center;}
+        .sabonete{background-image:url('Content/images/sabonete.jpg'); background-size:cover; background-position:center;}
+        .feijao{background-image:url('Content/images/feijao.jpg'); background-size:cover; background-position:center;}
+        .batata{background-image:url('Content/images/batata.jpg'); background-size:cover; background-position:center;}
+        .bicicleta{background-image:url('Content/images/bicicleta.jpg'); background-size:cover; background-position:center;}
+        .carro{background-image:url('Content/images/carro.jpg'); background-size:cover; background-position:center;}
+        .algodaodoce{background-image:url('Content/images/algodaodoce.jpg'); background-size:cover; background-position:center;}
+        .moto{background-image:url('Content/images/moto.jpg'); background-size:cover; background-position:center;}
+        .oculos{background-image:url('Content/images/oculos.jpg'); background-size:cover; background-position:center;}
+        .cadeiradepraia{background-image:url('Content/images/cadeiradepraia.jpg'); background-size:cover; background-position:center;}
+        .sombrinha{background-image:url('Content/images/sombrinha.jpg'); background-size:cover; background-position:center;}
+        .maquinadelavar{background-image:url('Content/images/maquinadelavar.jpg'); background-size:cover; background-position:center;}
+        .bola{background-image:url('Content/images/bola.jpg'); background-size:cover; background-position:center;}
+        .skate{background-image:url('Content/images/skate.jpg'); background-size:cover; background-position:center;}
+        .patins{background-image:url('Content/images/patins.jpg'); background-size:cover; background-position:center;}
+        .chavedefenda{background-image:url('Content/images/chavedefenda.jpg'); background-size:cover; background-position:center;}
+        .quadrado{background-image:url('Content/images/quadrado.jpg'); background-size:cover; background-position:center;}
+        .circulo{background-image:url('Content/images/circulo.jpg'); background-size:cover; background-position:center;}
+        .triangulo{background-image:url('Content/images/triangulo.jpg'); background-size:cover; background-position:center;}
+        .retangulo{background-image:url('Content/images/retangulo.jpg'); background-size:cover; background-position:center;}
+    </style>
+</head>
+<body id="didatica">
+    <div class="container">
+        <div class="box">
+            <p class="title">
+                Selecione a gravura que não pertence a nenhum dos grupos
+            </p>
+            <div class="container">  
+                <p>Em cada grupo existe uma imagem errada, tente descobrir qual é a errada. Cada erro elimina a alternativa.</p>              
+                <div class="col-md-6">
+                    <div class="box">
+                        <p class="title">Grupo 1</p>
+                        <div class="cc-selector">
+                            <input type="radio" name="g1" id="arroz" data-correct="no" />
+                            <label class="radio-cc arroz" for="arroz"></label>
+                            <input type="radio" name="g1" id="sabonete" data-correct="yes"/>
+                            <label class="radio-cc sabonete" for="sabonete"></label>
+                            <input type="radio" name="g1" id="feijao" data-correct="no"/>
+                            <label class="radio-cc feijao" for="feijao"></label>
+                            <input type="radio" name="g1" id="batata" data-correct="no"/>
+                            <label class="radio-cc batata" for="batata"></label>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <p class="title">Grupo 2</p>
+                        <div class="cc-selector">
+                            <input type="radio" name="g2" id="bicicleta" data-correct="no"/>
+                            <label class="radio-cc bicicleta" for="bicicleta"></label>
+                            <input type="radio" name="g2" id="carro" data-correct="no"/>
+                            <label class="radio-cc carro" for="carro"></label>
+                            <input type="radio" name="g2" id="algodaodoce" data-correct="yes" />
+                            <label class="radio-cc algodaodoce" for="algodaodoce"></label>
+                            <input type="radio" name="g2" id="moto" data-correct="no"/>
+                            <label class="radio-cc moto" for="moto"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box">
+                        <p class="title">Grupo 3</p>
+                        <div class="cc-selector">
+                            <input type="radio" name="g3" id="oculos" data-correct="no"/>
+                            <label class="radio-cc oculos" for="oculos"></label>
+                            <input type="radio" name="g3" id="cadeiradepraia" data-correct="no"/>
+                            <label class="radio-cc cadeiradepraia" for="cadeiradepraia"></label>
+                            <input type="radio" name="g3" id="sombrinha" data-correct="no"/>
+                            <label class="radio-cc sombrinha" for="sombrinha"></label>
+                            <input type="radio" name="g3" id="maquinadelavar" data-correct="yes"/>
+                            <label class="radio-cc maquinadelavar" for="maquinadelavar"></label>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <p class="title">Grupo 4</p>
+                        <div class="cc-selector">
+                            <input type="radio" name="g4" id="bola" data-correct="no"/>
+                            <label class="radio-cc bola" for="bola"></label>
+                            <input type="radio" name="g4" id="skate" data-correct="no"/>
+                            <label class="radio-cc skate" for="skate"></label>
+                            <input type="radio" name="g4" id="patins" data-correct="no"/>
+                            <label class="radio-cc patins" for="patins"></label>
+                            <input type="radio" name="g4" id="chavedefenda" data-correct="yes"/>
+                            <label class="radio-cc chavedefenda" for="chavedefenda"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <p class="title">
+                Relacione o nome com a figura
+            </p>
+            <div class="container">
+                <div class="col-md-6">
+                    <div class="im circulo">
+                        1
+                    </div>
+                    <div class="im quadrado">
+                        2
+                    </div>
+                    <div class="im retangulo">
+                        3
+                    </div>
+                    <div class="im triangulo">
+                        4
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p>Altere os valores abaixo de acordo com o número de cada desenho até que fique correto!</p>
+                    <label for="img1">Triângulo</label>
+                    <input type="number" id="img1" name="img1" max="4" min="1" value="1" />
+                    <label for="img2">Quadrado</label>
+                    <input type="number" id="img2" name="img1"max="4" min="1" value="2" />
+                    <label for="img3">Círculo</label>
+                    <input type="number" id="img3" name="img1" max="4" min="1" value="3" />
+                    <label for="img4">Retângulo</label>
+                    <input type="number" id="img4" name="img1" max="4" min="1" value="4" />
+
+                    <br/>
+                    <br/>
+                    <br />
+                    <br />
+                    <div id="rst"><p class="wrong">Incorreto</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("input").click(function () {
+            if ($(this).data('correct') === 'no') {
+                var $label = $('label[for="' + this.id + '"]');
+                $($label).effect("explode");
+                $(this).prop('checked', false);
+            }
+            var i1 = parseInt(document.getElementById('img1').value);
+            var i2 = parseInt(document.getElementById('img2').value);
+            var i3 = parseInt(document.getElementById('img3').value);
+            var i4 = parseInt(document.getElementById('img4').value);
+            var r = document.getElementById('rst');
+
+            if (i1 == 4 && i2 == 2 && i3 == 1 && i4 == 3)
+                r.innerHTML = "<p class='correct'>Correto</p>";
+            else 
+                r.innerHTML = "<p class='wrong'>Incorreto</p>";
+
+        });
+    </script>
+</body>
+</html>
