@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Produtos</h2>
+<div class="link">
+    @Html.ActionLink("Adicionar Produto", "Novo",new { }, new { @class = "btn btn-default" })
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Preço</th>
+            @if (ViewBag.CanDelete == true)
+            {
+                <th>Ações</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in ViewBag.Produtos)
+            {
+                <tr>
+                    <td>@item.nome</td>
+                    <td>@item.preco</td>
+                    @if (ViewBag.CanDelete == true)
+                    {
+                        <td>@Html.ActionLink("Deletar", "Delete", new { id = item.id })</td>
+                    }
+                </tr>
+            }
+        }        
+    </tbody>
+</table>
+
