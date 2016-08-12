@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Financeiro4.Models.trans>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar nova transcaçao", "Cadastrar", "Transacoes", new { }, new { });
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cliente_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.credito)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.credito)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="financeiroModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="senha" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trans">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cliente_id" Type="int" Nullable="false" />
+          <Property Name="tipo_id" Type="int" Nullable="false" />
+          <Property Name="data" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="credito" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_trans_has_clientes">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="trans" Type="Self.trans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trans">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_trans_has_tipos">
+          <End Role="tipos" Type="Self.tipos" Multiplicity="1" />
+          <End Role="trans" Type="Self.trans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trans">
+              <PropertyRef Name="tipo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="financeiroModelStoreContainer">
+          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="financeiro" store:Type="Tables" />
+          <EntitySet Name="tipos" EntityType="Self.tipos" Schema="financeiro" store:Type="Tables" />
+          <EntitySet Name="trans" EntityType="Self.trans" Schema="financeiro" store:Type="Tables" />
+          <AssociationSet Name="fk_trans_has_clientes" Association="Self.fk_trans_has_clientes">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="trans" EntitySet="trans" />
+          </AssociationSet>
+          <AssociationSet Name="fk_trans_has_tipos" Association="Self.fk_trans_has_tipos">
+            <End Role="tipos" EntitySet="tipos" />
+            <End Role="trans" EntitySet="trans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="financeiroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="trans" Relationship="Self.fk_trans_has_clientes" FromRole="clientes" ToRole="trans" />
+        </EntityType>
+        <EntityType Name="tipos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="trans" Relationship="Self.fk_trans_has_tipos" FromRole="tipos" ToRole="trans" />
+        </EntityType>
+        <EntityType Name="trans">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cliente_id" Type="Int32" Nullable="false" />
+          <Property Name="tipo_id" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="valor" Type="Decimal" Nullable="false" />
+          <Property Name="credito" Type="SByte" Nullable="false" />
+          <NavigationProperty Name="clientes" Relationship="Self.fk_trans_has_clientes" FromRole="trans" ToRole="clientes" />
+          <NavigationProperty Name="tipos" Relationship="Self.fk_trans_has_tipos" FromRole="trans" ToRole="tipos" />
+        </EntityType>
+        <Association Name="fk_trans_has_clientes">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="trans" Type="Self.trans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trans">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_trans_has_tipos">
+          <End Role="tipos" Type="Self.tipos" Multiplicity="1" />
+          <End Role="trans" Type="Self.trans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trans">
+              <PropertyRef Name="tipo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="financeiroEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="clientes" EntityType="Self.clientes" />
+          <EntitySet Name="tipos" EntityType="Self.tipos" />
+          <EntitySet Name="trans" EntityType="Self.trans" />
+          <AssociationSet Name="fk_trans_has_clientes" Association="Self.fk_trans_has_clientes">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="trans" EntitySet="trans" />
+          </AssociationSet>
+          <AssociationSet Name="fk_trans_has_tipos" Association="Self.fk_trans_has_tipos">
+            <End Role="tipos" EntitySet="tipos" />
+            <End Role="trans" EntitySet="trans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="financeiroModelStoreContainer" CdmEntityContainer="financeiroEntities">
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="financeiroModel.clientes">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipos">
+            <EntityTypeMapping TypeName="financeiroModel.tipos">
+              <MappingFragment StoreEntitySet="tipos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trans">
+            <EntityTypeMapping TypeName="financeiroModel.trans">
+              <MappingFragment StoreEntitySet="trans">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+                <ScalarProperty Name="tipo_id" ColumnName="tipo_id" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="credito" ColumnName="credito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
