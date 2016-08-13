@@ -10,29 +10,29 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.cliente_id)
+            Cliente
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tipo_id)
+            Tipo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.data)
+           Data
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.valor)
+           Valor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.credito)
+            Crédito
         </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.cliente_id)
+            @Html.DisplayFor(modelItem => item.clientes.nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.tipo_id)
+            @Html.DisplayFor(modelItem => item.tipos.nome)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.data)

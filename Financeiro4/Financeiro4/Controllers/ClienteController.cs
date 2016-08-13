@@ -7,29 +7,36 @@ using System.Web.Security;
 
 namespace Financeiro4.Controllers
 {
-    
+    [Authorize]
     public class ClienteController : Controller
     {
         // GET: Cliente
         public ActionResult Index()
         {
-            Models.financeiroEntities db = new Models.financeiroEntities();
+            Models.DatabaseEntities db = new Models.DatabaseEntities();
 
             //ordena por data e nome
-            db.trans.OrderBy(p => p.data).OrderBy(p=> p.tipos.nome);
+            var result = db.trans.OrderBy(p => p.data).OrderBy(p=> p.tipos.nome);
 
-            return View(db);
+            return View(result);
         }
 
-        
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
+
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(Models.LoginModel model)
         {
-            Models.financeiroEntities db = new Models.financeiroEntities();
+            Models.DatabaseEntities db = new Models.DatabaseEntities();
 
             var user = db.clientes.Where(p => p.login == model.Login && p.senha == model.Senha).FirstOrDefault();
 
@@ -53,10 +60,14 @@ namespace Financeiro4.Controllers
                 cookie.HttpOnly = true;
                 Response.Cookies.Add(cookie);
 
+                Session["id"] = user.id;
+          
+
                 return Redirect("Index");
             }
             else
             {
+                ViewBag.Error = "Login Inválido!";
                 return View();
             }
 

@@ -11,7 +11,7 @@ namespace Financeiro4.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            Models.financeiroEntities db = new Models.financeiroEntities();
+            Models.DatabaseEntities db = new Models.DatabaseEntities();
 
             return View(db.clientes.OrderBy(p=> p.nome));
         }

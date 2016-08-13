@@ -8,7 +8,7 @@
 <h2>Cadastrar</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Salvar", "Transacoes"))
 {
     @Html.AntiForgeryToken()
     
@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tipo_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tipo_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.tipo_id, (SelectList)ViewBag.Tipos, new { htmlAttributes = new { @class = "form-control" } });
                 @Html.ValidationMessageFor(model => model.tipo_id, "", new { @class = "text-danger" })
             </div>
         </div>

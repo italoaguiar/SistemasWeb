@@ -12,7 +12,7 @@ namespace Financeiro4.Controllers
         public ActionResult Index()
         {
 
-            Models.financeiroEntities db = new Models.financeiroEntities();
+            Models.DatabaseEntities db = new Models.DatabaseEntities();
 
             return View(db.tipos.OrderBy(p=> p.nome).ToList());
         }
